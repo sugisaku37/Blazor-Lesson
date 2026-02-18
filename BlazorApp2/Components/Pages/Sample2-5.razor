@@ -1,0 +1,27 @@
+@page "/sample2-4-2"
+@rendermode InteractiveServer
+
+<input type="checkbox" @bind="isChecked" /> チェックボックス
+<p> チェックされている: @isChecked </p>
+
+@code {
+    bool isChecked { get; set; }
+}
+
+<select @bind="selectedKey">
+    @foreach (var item in list)
+    {
+        <option value="@item.Key">@item.Value</option>
+    }
+</select>
+<p> 選択されたキー: @selectedKey </p>
+
+@code {
+    string selectedKey = "";
+    Dictionary<string, string> list = new Dictionary<string, string>()
+    {
+        { "A", "Apple" },
+        { "B", "Banana" },
+        { "C", "Cherry" }
+    };
+}

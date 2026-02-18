@@ -1,0 +1,34 @@
+@page "/sample2-3-2"
+
+<select>
+    @if (sa != null)
+    {
+        @foreach (var item in sa)
+        {
+            <option value="@item">@item</option>
+        }
+    }
+</select>
+
+<dl>
+    @if (dict != null)
+    {
+        @foreach (var kvp in dict)
+        {
+            <dt>@kvp.Key</dt> <dd>@kvp.Value</dd>
+        }
+    }
+</dl>
+
+@code {
+    string[] sa = ["Foo", "Bar", "Baz", "Qux"];
+    Dictionary<string, string> dict = new Dictionary<string, string>();
+
+    protected override void OnInitialized()
+    {
+        dict.Add("001-999", "佐藤");
+        dict.Add("009-876", "鈴木");
+        dict.Add("123-456", "高橋");
+        dict.Add("987-654", "田中");
+    }
+}
