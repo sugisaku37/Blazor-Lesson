@@ -58,6 +58,14 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xTYW1wbGUyLTQtMi5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/sugis/source/repos/Blazor-Lesson/BlazorApp2/Components/Pages/Sample2-5.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xTYW1wbGUyLTUucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/sugis/source/repos/Blazor-Lesson/BlazorApp2/Components/Pages/Sample2-6-2.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xTYW1wbGUyLTYtMi5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/sugis/source/repos/Blazor-Lesson/BlazorApp2/Components/Pages/Weather.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xXZWF0aGVyLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
