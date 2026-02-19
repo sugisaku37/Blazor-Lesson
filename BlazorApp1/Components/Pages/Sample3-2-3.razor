@@ -1,0 +1,16 @@
+@page "/sample3-2-3"
+@rendermode InteractiveServer
+
+<a href="/counter">Counterページへ</a>
+<a href="/weather">Weatherページへ</a>
+
+<input type="button" value="Counterページへ" @onclick="btnClick" />
+
+@inject NavigationManager navigationManager
+
+@code {
+    private void btnClick()
+    {
+        navigationManager.NavigateTo("/counter");
+    }
+}
