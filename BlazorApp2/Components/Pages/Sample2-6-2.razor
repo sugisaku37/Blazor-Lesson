@@ -1,0 +1,17 @@
+@page "/sample2-6-2"
+@rendermode InteractiveServer
+
+<input type="text" @bind="age" placeholder="年齢を入力してください" />
+<p> 年齢: @age </p>
+
+<input type="text" @bind="name" placeholder="名前を入力してください" />
+<p> 名前: @name </p>
+<p>@(name == null ? "値はnullです" : (name == ""? "値は空文字です" : "値は入っています"))</p>
+
+@code {
+    @* int age { get; set; } = 48; *@
+    string age { get; set; } = "";
+
+    @* string name { get; set; } = null; *@
+    string name { get; set; } = "";
+}
