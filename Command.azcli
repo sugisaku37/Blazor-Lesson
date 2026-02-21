@@ -1,5 +1,6 @@
 dotnet new blazor -o BlazorApp1 -n BlazorApp1
 dotnet new blazor -o BlazorApp2 -n BlazorApp2
+dotnet new blazor -o BlazorApp4 -n BlazorApp4
 
 Interactive render mode は Program.cs:25 で設定できる：
 

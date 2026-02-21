@@ -1,0 +1,58 @@
+@page "/biza/editauthor/{AuthorId}"
+@using Microsoft.AspNetCore.Components.Forms
+@using BlazorApp4.Components.Pages.BizA
+
+<h3>筆者データの更新</h3>
+
+<EditForm Model="@ViewModel" OnValidSubmit="btnSubmit_OnClick">
+    <DataAnnotationsValidator />
+
+    <dl>
+        <dt>筆者ID</dt><dd>@ViewModel.AuthorId</dd>
+        <dt>筆者名（名）</dt><dd><InputText @bind-Value="ViewModel.AuthorFirstName" /></dd>
+        <dt>筆者名（姓）</dt><dd><InputText @bind-Value="ViewModel.AuthorLastName" /></dd>
+        <dt>電話番号</dt><dd><InputText @bind-Value="ViewModel.Phone" /></dd>
+    </dl>
+
+    <ValidationSummary />
+
+<button type="submit">更新</button>
+<button type="button" @onclick="btnCancel_OnClick">キャンセル</button>
+
+</EditForm>
+
+@code {
+    [Parameter]
+    public string AuthorId { get; set; } = null;
+    private EditAuthorViewModel ViewModel { get; set; } = null;
+
+    [Inject]
+    private NavigationManager navigationManager { get; set; } = null;
+
+    protected override void OnInitialized()
+    {
+        // DBからデータ読み出し（ダミーデータ）
+        ViewModel = new EditAuthorViewModel()
+        {
+            AuthorId = this.AuthorId,
+            AuthorFirstName = "Akinori",
+            AuthorLastName = "Sugimura",
+            Phone = "090-1234-5678"
+        };
+    }
+
+    private void btnSubmit_OnClick()
+    {
+        // DBにデータ保存
+        // ...
+
+        // メイン画面に遷移
+        navigationManager.NavigateTo("/");
+    }
+
+    private void btnCancel_OnClick()
+    {
+        // メイン画面に遷移
+        navigationManager.NavigateTo("/");
+    }
+}
