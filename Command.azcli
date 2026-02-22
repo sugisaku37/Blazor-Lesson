@@ -1,11 +1,13 @@
 dotnet new blazor -o BlazorApp1 -n BlazorApp1 -ai true
 dotnet new blazor -o BlazorApp2 -n BlazorApp2 -ai true
 dotnet new blazor -o BlazorApp4 -n BlazorApp4 -ai true
+dotnet new mstest -o BlazorApp4.Tests -n BlazorApp4.Tests
 
 dotnet new sln
 dotnet sln Blazor-Lesson.slnx add ./BlazorApp1/BlazorApp1.csproj
 dotnet sln Blazor-Lesson.slnx add ./BlazorApp2/BlazorApp2.csproj
 dotnet sln Blazor-Lesson.slnx add ./BlazorApp4/BlazorApp4.csproj
+dotnet sln Blazor-Lesson.slnx add ./BlazorApp4.Tests/BlazorApp4.Tests.csproj
 
 Interactive render mode は Program.cs:25 で設定できる：
 

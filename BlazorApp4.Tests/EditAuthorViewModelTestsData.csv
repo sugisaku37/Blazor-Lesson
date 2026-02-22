@@ -1,0 +1,4 @@
+TestId,AuthorId,AuthorFirstName,AuthorLastName,Phone,ExpectedErrorCount,FirstErrorMessage,SecondErrorMessage
+1,123-45-6789,,Akame,123 456-7890,1,筆者名（名）は必須入力です。,
+2,123-45-6789,あああ,Akame,123 456-7890,1,筆者名（名）は半角20文字以内で入力してください。,
+3,123-45-6789,あああ,いいい,123 456-7890,2,筆者名（名）は半角20文字以内で入力してください。,筆者名（姓）は半角40文字以内で入力してください。
