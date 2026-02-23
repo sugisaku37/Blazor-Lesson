@@ -1,0 +1,32 @@
+@page "/sample5-4-3"
+
+@inject IConfiguration configuration
+<p>Instance:@configuration["AzureAd:Instance"]</p>
+<p>Domain:@configuration["AzureAd:Domain"]</p>
+<p>TenantId:@configuration["AzureAd:TenantId"]</p>
+<p>ClientId:@configuration["AzureAd:ClientId"]</p>
+<p>CallbackPath:@configuration["AzureAd:CallbackPath"]</p>
+<p>Default LogLevel:@configuration["Logging:LogLevel:Default"]</p>
+<p>Accepted File Types:@string.Join(", ", configuration.GetSection("AppSettings:AcceptFiles").Get<string[]>() ?? Array.Empty<string>())</p>
+
+@inject IConfiguration config
+
+<p>Authority:@azureAdConfig.Authority</p>
+<p>ClientId:@azureAdConfig.ClientId</p>
+<p>ValidateAuthority:@azureAdConfig.ValidateAuthority</p>
+
+@code{
+    private AzureAdConfig azureAdConfig { get; set; } = new AzureAdConfig();
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        this.azureAdConfig = configuration.GetSection("AzureAd").Get<AzureAdConfig>() ?? new AzureAdConfig();
+    }
+    public class AzureAdConfig
+    {
+        public string Authority { get; set; } = string.Empty;
+        public string ClientId { get; set; } = string.Empty;
+        public bool ValidateAuthority { get; set; }
+    }
+}
