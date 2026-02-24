@@ -8,11 +8,14 @@
 
 <button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
 
+@inject ILogger<Counter> logger
+
 @code {
     private int currentCount = 0;
 
     private void IncrementCount()
     {
         currentCount++;
+        logger.LogWarning("Counter incremented to {Count}", currentCount);
     }
 }

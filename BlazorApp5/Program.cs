@@ -1,10 +1,21 @@
 using BlazorApp5.Components;
+using Microsoft.Extensions.Logging.EventLog;
 
 var builder = WebApplication.CreateBuilder(args);
 
+if (OperatingSystem.IsWindows())
+{
+    builder.Logging.AddEventLog(EventLogSettings =>
+    {
+#pragma warning disable CA1416
+        EventLogSettings.SourceName = "MyLogs";
+#pragma warning restore CA1416
+    });
+}
+
 // Add services to the container.
 builder.Services.AddRazorComponents()
-    .AddInteractiveServerComponents(options => 
+    .AddInteractiveServerComponents(options =>
     {
         options.DetailedErrors = false;
         options.DisconnectedCircuitMaxRetained = 100;
