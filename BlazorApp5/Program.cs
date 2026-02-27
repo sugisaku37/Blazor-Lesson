@@ -1,3 +1,4 @@
+using BlazorApp5;
 using BlazorApp5.Components;
 using Microsoft.Extensions.Logging.EventLog;
 
@@ -23,6 +24,9 @@ builder.Services.AddRazorComponents()
         options.JSInteropDefaultCallTimeout = TimeSpan.FromMinutes(1);
         options.MaxBufferedUnacknowledgedRenderBatches = 10;
     });
+
+// 例外ログのファイル出力機能の追加
+builder.Logging.AddProvider(new ExceptionFileLoggerProvider());
 
 var app = builder.Build();
 
