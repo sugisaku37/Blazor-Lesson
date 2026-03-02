@@ -3,4 +3,5 @@
   <Project Path="BlazorApp2/BlazorApp2.csproj" />
   <Project Path="BlazorApp4/BlazorApp4.csproj" />
   <Project Path="BlazorApp5/BlazorApp5.csproj" />
+  <Project Path="BlazorApp6/BlazorApp6.csproj" />
 </Solution>
