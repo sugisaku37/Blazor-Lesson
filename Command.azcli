@@ -1,3 +1,4 @@
+# プロジェクトの作成
 dotnet new blazor -o BlazorApp1 -n BlazorApp1 -ai true
 dotnet new blazor -o BlazorApp2 -n BlazorApp2 -ai true
 dotnet new blazor -o BlazorApp4 -n BlazorApp4 -ai true
@@ -5,6 +6,7 @@ dotnet new mstest -o BlazorApp4.Tests -n BlazorApp4.Tests
 dotnet new blazor -o BlazorApp5 -n BlazorApp5 -ai true
 dotnet new blazor -o BlazorApp6 -n BlazorApp6 -ai true
 
+# ソリューションファイルへの追加
 dotnet new sln
 dotnet sln Blazor-Lesson.slnx add ./BlazorApp1/BlazorApp1.csproj
 dotnet sln Blazor-Lesson.slnx add ./BlazorApp2/BlazorApp2.csproj
@@ -16,7 +18,11 @@ dotnet sln Blazor-Lesson.slnx add ./BlazorApp6/BlazorApp6.csproj
 # SQL Server のインストールコマンド
 .\setup.exe /Q /IACCEPTSQLSERVERLICENSETERMS /ACTION="install" /FEATURES=SQL,Tools /INSTANCENAME=MSSQLSERVER /SECURITYMODE=SQL /SAPWD="Passw0rd" /SQLSVCACCOUNT="NT AUTHORITY\NETWORK SERVICE" /SQLSVCSTARTUPTYPE="Automatic" /SQLSYSADMINACCOUNTS=".\Administrator"
 
-
+# Entity Framework Coreのインストール
+dotnet add package Microsoft.EntityFrameworkCore
+dotnet add package Microsoft.EntityFrameworkCore.SqlServer
+dotnet add package Microsoft.EntityFrameworkCore.Design
+dotnet tool update --global dotnet-ef
 
 Interactive render mode は Program.cs:25 で設定できる：
 
