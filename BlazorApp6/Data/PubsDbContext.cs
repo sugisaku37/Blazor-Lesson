@@ -10,6 +10,8 @@ namespace BlazorApp6.Data
     public class PubsDbContext : DbContext
     {
         public DbSet<Author> Authors { get; set; }
+        public DbSet<Publisher> Publishers { get; set; }
+        public DbSet<Store> Stores { get; set; }
         public DbSet<Title> Titles { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
