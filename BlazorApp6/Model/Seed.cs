@@ -12,7 +12,7 @@ namespace BlazorApp6.Model
         public static async Task InitializeAsync(IServiceProvider provider)
         {
             using var db = provider.GetRequiredService<PubsDbContext>();
-            if (await db.Authors.AnyAsync() || await db.Titles.AnyAsync())
+            if (await db.Authors.AnyAsync() || await db.Publishers.AnyAsync() || await db.Titles.AnyAsync())
             {
                 return; // DB has been seeded
             }
@@ -41,6 +41,17 @@ namespace BlazorApp6.Model
                 new Author { AuthorId = "486-29-1786", AuthorFirstName = "Locksley", AuthorLastName = "Charlene", Phone = "415 585-4620", Address = "18 Broadway Av.", City = "San Francisco", State = "CA", Zip = "94130", Contract = true },
                 new Author { AuthorId = "648-92-1872", AuthorFirstName = "Blotchet-Halls", AuthorLastName = "Reginald", Phone = "503 745-6402", Address = "55 Hillsdale Bl.", City = "Corvallis", State = "OR", Zip = "97330", Contract = true },
                 new Author { AuthorId = "341-22-1782", AuthorFirstName = "Smith", AuthorLastName = "Meander", Phone = "913 843-0462", Address = "10 Mississippi Dr.", City = "Lawrence", State = "KS", Zip = "66044", Contract = false }
+            );
+
+            await db.Publishers.AddRangeAsync(
+                new Publisher { PublisherId = "0736", PublisherName = "New Moon Books", City = "Boston", State = "MA", Country = "USA" },
+                new Publisher { PublisherId = "0877", PublisherName = "Binnet & Hardley", City = "Washington", State = "DC", Country = "USA" },
+                new Publisher { PublisherId = "1389", PublisherName = "Algodata Infosystems", City = "Berkeley", State = "CA", Country = "USA" },
+                new Publisher { PublisherId = "9952", PublisherName = "Scootney Books", City = "New York", State = "NY", Country = "USA" },
+                new Publisher { PublisherId = "1622", PublisherName = "Five Lakes Publishing", City = "Chicago", State = "IL", Country = "USA" },
+                new Publisher { PublisherId = "1756", PublisherName = "Ramona Publishers", City = "Dallas", State = "TX", Country = "USA" },
+                new Publisher { PublisherId = "9901", PublisherName = "GGG&G", City = "Munchen", State = null, Country = "Germany" },
+                new Publisher { PublisherId = "9999", PublisherName = "Lucerne Publishing", City = "Paris", State = null, Country = "France" }
             );
 
             await db.SaveChangesAsync();
