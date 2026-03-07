@@ -5,6 +5,7 @@ dotnet new blazor -o BlazorApp4 -n BlazorApp4 -ai true
 dotnet new mstest -o BlazorApp4.Tests -n BlazorApp4.Tests
 dotnet new blazor -o BlazorApp5 -n BlazorApp5 -ai true
 dotnet new blazor -o BlazorApp6 -n BlazorApp6 -ai true
+dotnet new console -o BlazorApp6.Console -n BlazorApp6.Console
 
 # ソリューションファイルへの追加
 dotnet new sln
@@ -14,6 +15,7 @@ dotnet sln Blazor-Lesson.slnx add ./BlazorApp4/BlazorApp4.csproj
 dotnet sln Blazor-Lesson.slnx add ./BlazorApp4.Tests/BlazorApp4.Tests.csproj
 dotnet sln Blazor-Lesson.slnx add ./BlazorApp5/BlazorApp5.csproj
 dotnet sln Blazor-Lesson.slnx add ./BlazorApp6/BlazorApp6.csproj
+dotnet sln Blazor-Lesson.slnx add ./BlazorApp6.Console/BlazorApp6.Console.csproj
 
 # SQL Server のインストールコマンド
 .\setup.exe /Q /IACCEPTSQLSERVERLICENSETERMS /ACTION="install" /FEATURES=SQL,Tools /INSTANCENAME=MSSQLSERVER /SECURITYMODE=SQL /SAPWD="Passw0rd" /SQLSVCACCOUNT="NT AUTHORITY\NETWORK SERVICE" /SQLSVCSTARTUPTYPE="Automatic" /SQLSYSADMINACCOUNTS=".\Administrator"
