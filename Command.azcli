@@ -17,6 +17,10 @@ dotnet sln Blazor-Lesson.slnx add ./BlazorApp5/BlazorApp5.csproj
 dotnet sln Blazor-Lesson.slnx add ./BlazorApp6/BlazorApp6.csproj
 dotnet sln Blazor-Lesson.slnx add ./BlazorApp6.Console/BlazorApp6.Console.csproj
 
+# プロジェクト参照の追加
+dotnet reference add ./BlazorApp4/BlazorApp4.csproj --project ./BlazorApp4.Tests/BlazorApp4.Tests.csproj
+dotnet reference add ./BlazorApp6/BlazorApp6.csproj --project ./BlazorApp6.Console/BlazorApp6.Console.csproj
+
 # SQL Server のインストールコマンド
 .\setup.exe /Q /IACCEPTSQLSERVERLICENSETERMS /ACTION="install" /FEATURES=SQL,Tools /INSTANCENAME=MSSQLSERVER /SECURITYMODE=SQL /SAPWD="Passw0rd" /SQLSVCACCOUNT="NT AUTHORITY\NETWORK SERVICE" /SQLSVCSTARTUPTYPE="Automatic" /SQLSYSADMINACCOUNTS=".\Administrator"
 
