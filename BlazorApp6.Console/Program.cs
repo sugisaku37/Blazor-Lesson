@@ -1,5 +1,5 @@
 ﻿using BlazorApp6.Data;
-using BlazorApp6.Model;
+using BlazorApp6.Models;
 
 Console.WriteLine("6.4.1 データ参照方法");
 

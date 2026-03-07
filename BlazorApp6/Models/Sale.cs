@@ -1,7 +1,7 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 
-namespace BlazorApp6.Model
+namespace BlazorApp6.Models
 {
     [Table("sales")]
     public class Sale

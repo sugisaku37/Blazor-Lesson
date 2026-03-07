@@ -1,6 +1,6 @@
 using BlazorApp6.Components;
 using BlazorApp6.Data;
-using BlazorApp6.Model;
+using BlazorApp6.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 

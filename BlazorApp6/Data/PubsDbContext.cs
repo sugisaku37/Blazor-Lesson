@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using BlazorApp6.Model;
+using BlazorApp6.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace BlazorApp6.Data

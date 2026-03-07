@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using BlazorApp6.Data;
 using Microsoft.EntityFrameworkCore;
 
-namespace BlazorApp6.Model
+namespace BlazorApp6.Models
 {
     public static class Seed
     {
