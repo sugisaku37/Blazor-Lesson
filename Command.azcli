@@ -17,7 +17,7 @@ dotnet sln Blazor-Lesson.slnx add ./BlazorApp4.Tests/BlazorApp4.Tests.csproj
 dotnet sln Blazor-Lesson.slnx add ./BlazorApp5/BlazorApp5.csproj
 dotnet sln Blazor-Lesson.slnx add ./BlazorApp6/BlazorApp6.csproj
 dotnet sln Blazor-Lesson.slnx add ./BlazorApp6.Console/BlazorApp6.Console.csproj
-dotnet sln Blazor-Lesson.slnx add ./BlazorApp6/BlazorApp7.csproj
+dotnet sln Blazor-Lesson.slnx add ./BlazorApp7/BlazorApp7.csproj
 
 # プロジェクト参照の追加
 dotnet reference add ./BlazorApp4/BlazorApp4.csproj --project ./BlazorApp4.Tests/BlazorApp4.Tests.csproj

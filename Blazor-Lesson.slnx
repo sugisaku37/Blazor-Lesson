@@ -5,4 +5,5 @@
   <Project Path="BlazorApp5/BlazorApp5.csproj" />
   <Project Path="BlazorApp6.Console/BlazorApp6.Console.csproj" />
   <Project Path="BlazorApp6/BlazorApp6.csproj" />
+  <Project Path="BlazorApp7/BlazorApp7.csproj" />
 </Solution>
