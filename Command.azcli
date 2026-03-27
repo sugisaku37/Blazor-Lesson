@@ -6,6 +6,7 @@ dotnet new mstest -o BlazorApp4.Tests -n BlazorApp4.Tests
 dotnet new blazor -o BlazorApp5 -n BlazorApp5 -ai true
 dotnet new blazor -o BlazorApp6 -n BlazorApp6 -ai true
 dotnet new console -o BlazorApp6.Console -n BlazorApp6.Console
+dotnet new blazor -o BlazorApp7 -n BlazorApp7 -ai true
 
 # ソリューションファイルへの追加
 dotnet new sln
@@ -16,6 +17,7 @@ dotnet sln Blazor-Lesson.slnx add ./BlazorApp4.Tests/BlazorApp4.Tests.csproj
 dotnet sln Blazor-Lesson.slnx add ./BlazorApp5/BlazorApp5.csproj
 dotnet sln Blazor-Lesson.slnx add ./BlazorApp6/BlazorApp6.csproj
 dotnet sln Blazor-Lesson.slnx add ./BlazorApp6.Console/BlazorApp6.Console.csproj
+dotnet sln Blazor-Lesson.slnx add ./BlazorApp6/BlazorApp7.csproj
 
 # プロジェクト参照の追加
 dotnet reference add ./BlazorApp4/BlazorApp4.csproj --project ./BlazorApp4.Tests/BlazorApp4.Tests.csproj
@@ -29,10 +31,14 @@ dotnet reference add ./BlazorApp6/BlazorApp6.csproj --project ./BlazorApp6.Conso
 Server=localhost;Initial Catalog=pubs;Persist Security Info=True;User ID=sa;Password=Passw0rd;Pooling=False;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=True;Command Timeout=0;
 
 # Entity Framework Coreのインストール
-# dotnet add package Microsoft.EntityFrameworkCore
+dotnet add package Microsoft.EntityFrameworkCore
 dotnet add package Microsoft.EntityFrameworkCore.SqlServer
 dotnet add package Microsoft.EntityFrameworkCore.Design
 dotnet tool update --global dotnet-ef
+
+# Blazorのクイックグリッドコンポーネントのインストール
+dotnet add package Microsoft.AspNetCore.Components.QuickGrid
+
 
 # データベースの作成
 dotnet ef migrations add InitialCreate
