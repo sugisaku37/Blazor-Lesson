@@ -1,4 +1,4 @@
-@page "/Sample03"
+@page "/Sample04"
 @using BlazorApp7.Data
 @using Microsoft.EntityFrameworkCore
 @using Microsoft.AspNetCore.Components.QuickGrid
@@ -6,7 +6,7 @@
 
 @inject IDbContextFactory<PubsDbContext> DbFactory
 
-<h3>Sample03 : ソート</h3>
+<h3>Sample04 : ページング</h3>
 
 @if(authors == null)
 {
@@ -14,7 +14,7 @@
 }
 else
 {
-    <QuickGrid Items="@authors">
+    <QuickGrid Items="@authors" Pagination="@paginationState">
         <PropertyColumn Title="著者ID" Property="@(a => a.AuthorId)" Sortable="true" />
         <TemplateColumn Title="著者名" 
             Sortable="true" 
@@ -28,10 +28,17 @@ else
             @(context.Contract ? "契約あり" : "契約なし")
         </TemplateColumn>
     </QuickGrid>
+
+    <Paginator State="@paginationState" />
 }
 
 @code {
     private IQueryable<Author>? authors = null;
+    
+    private readonly PaginationState paginationState = new PaginationState()
+    {
+        ItemsPerPage = 10
+    };
     
     protected override async Task OnInitializedAsync()
     {
