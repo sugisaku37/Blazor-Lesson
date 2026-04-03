@@ -1,0 +1,51 @@
+@page "/Sample04b"
+@using BlazorApp7.Data
+@using Microsoft.EntityFrameworkCore
+@using Microsoft.AspNetCore.Components.QuickGrid
+@using System.Security.Permissions
+
+@inject IDbContextFactory<PubsDbContext> DbFactory
+
+<h3>Sample04b : （参考）大量ページング（仮想化）</h3>
+
+<div class = "grid" tabindex="-1">
+    <QuickGrid ItemsProvider="@ItemsProvider" Virtualize="true" ItemSize="5">
+        <PropertyColumn Title="著者ID" Property="@(a => a.AuthorId)" Sortable="true" />
+        <TemplateColumn Title="著者名" 
+            Sortable="true" 
+            SortBy="@(GridSort<Author>.ByAscending(a => a.AuthorFirstName).ThenAscending(a => a.AuthorLastName))">
+                @(context.AuthorFirstName) @(context.AuthorLastName)
+        </TemplateColumn>
+        <PropertyColumn Title="電話番号" Property="@(a => a.Phone)" Sortable="true" />
+        <PropertyColumn Title="州" Property="@(a => a.State)" Sortable="true" />
+        <TemplateColumn Title="契約有無" Sortable="true" SortBy="@(GridSort<Author>.ByAscending(a => a.Contract))">
+            <input type="checkbox" disabled value="@(context.Contract)" />
+            @(context.Contract ? "契約あり" : "契約なし")
+        </TemplateColumn>
+    </QuickGrid>
+</div>
+
+<p>@LogMessage</p>
+
+@code {
+    private GridItemsProvider<Author>? ItemsProvider { get; set; }
+
+    private string? LogMessage { get; set; } // デバッグ用のログメッセージ
+    
+    protected override void OnInitialized()
+    {
+        ItemsProvider = async request =>
+        {
+            LogMessage += "(" + request.StartIndex + "," + request.Count + ")"; // デバッグ用のログメッセージ
+            StateHasChanged(); // デバッグ用のログメッセージを更新するためにUIを再描画
+
+            await using (var pubs = await DbFactory.CreateDbContextAsync())
+            {
+                var data = await pubs.Authors.Skip(request.StartIndex).Take(request.Count ?? 0).ToListAsync();
+                var totalCount = await pubs.Authors.CountAsync();
+                return GridItemsProviderResult.From(data, totalCount);
+            }
+        };    
+    }
+
+}
