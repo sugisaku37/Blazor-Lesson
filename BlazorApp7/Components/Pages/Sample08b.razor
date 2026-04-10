@@ -1,0 +1,76 @@
+@page "/Sample08b/{AuthorId}"
+@using BlazorApp7.Data
+@using Microsoft.EntityFrameworkCore
+@using Microsoft.AspNetCore.Components.QuickGrid
+@using System.Security.Permissions
+
+@inject IDbContextFactory<PubsDbContext> DbFactory
+@inject NavigationManager Navigation
+
+<h3>Sample08b : 画面遷移</h3>
+
+@if (AuthorToDisplay == null)
+{
+    <span>著者が選択されていません。</span>
+}
+else
+{
+    <p>@Message</p>
+    <div>
+        <dl>
+            <dt>著者ID</dt> <dd>@AuthorToDisplay.AuthorId</dd>
+            <dt>著者名</dt> <dd>@AuthorToDisplay.AuthorFirstName @AuthorToDisplay.AuthorLastName</dd>
+            <dt>住所</dt> <dd>@AuthorToDisplay.Address @AuthorToDisplay.City @AuthorToDisplay.State @AuthorToDisplay.Zip</dd>
+            <dt>電話番号</dt> <dd>@AuthorToDisplay.Phone</dd>
+            <dt>契約有無</dt> <dd>@(AuthorToDisplay.Contract ? "契約あり" : "契約なし")</dd>
+            <dt>タイトル数</dt> <dd>@(AuthorToDisplay.TitleAuthors.Count())</dd>
+        </dl>
+    </div>
+    <div>
+        <QuickGrid Items="@Titles.AsQueryable()" TGridItem="Title">
+            <PropertyColumn Title="書籍ID" Property="@(t => t.TitleId)" />
+            <PropertyColumn Title="書籍名" Property="@(t => t.TitleName)" />
+            <PropertyColumn Title="価格" Property="@(t => t.Price)" />
+            <PropertyColumn Title="出版社名" Property="@(t => t.Publisher != null ? t.Publisher!.PublisherName : null)" />
+        </QuickGrid>
+    </div>
+}
+
+<a href="" @onclick="@(OnReturnButtonClicked)" @onclick:preventDefault>著者一覧に戻る</a>
+
+@code {
+    [Parameter]
+    public required string AuthorId { get; init; }
+
+    private Author? AuthorToDisplay { get; set; }
+    private IEnumerable<Title> Titles { get; set; } = Enumerable.Empty<Title>();
+
+    private string Message { get; set; } = string.Empty;
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (String.IsNullOrEmpty(AuthorId)) throw new ArgumentException("AuthorId is required.");
+        if (System.Text.RegularExpressions.Regex.IsMatch(AuthorId, @"^\d{3}-\d{2}-\d{4}$") == false) throw new ArgumentException("AuthorId must be in the format XXX-XX-XXXX.");
+
+        await using (var pubs = await DbFactory.CreateDbContextAsync())
+        {
+            Titles = (await pubs.Titles.Where(t => t.TitleAuthors
+                .Where(ta => ta.AuthorId == this.AuthorId).Count() > 0)
+                .Include(t => t.Publisher)
+                .ToListAsync()).AsQueryable();
+
+            AuthorToDisplay = await pubs.Authors
+                .Include(a => a.TitleAuthors)
+                .FirstOrDefaultAsync(a => a.AuthorId == this.AuthorId);
+        }
+
+        Message = AuthorToDisplay != null
+            ? $"{AuthorToDisplay.AuthorFirstName} {AuthorToDisplay.AuthorLastName} さんの情報は以下のとおりです。"
+            : "著者が見つかりませんでした。";
+    }
+
+    private void OnReturnButtonClicked()
+    {
+        Navigation.NavigateTo("/Sample08");
+    }
+}

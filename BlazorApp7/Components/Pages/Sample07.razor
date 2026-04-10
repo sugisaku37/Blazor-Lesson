@@ -18,7 +18,7 @@ else
         <QuickGrid Items="@authors" Pagination="@paginationState">
             <TemplateColumn Title="著者ID" Sortable="true">
                 <a href="" @onclick="@(() => OnSelectButtonClicked(context))" @onclick:preventDefault>@(context.AuthorId)</a>
-                <button @onclick="@(() => OnSelectButtonClicked(context))">@(context.AuthorId)</button>
+                @* <button @onclick="@(() => OnSelectButtonClicked(context))">@(context.AuthorId)</button> *@
             </TemplateColumn>
             <TemplateColumn Title="著者名" 
                 Sortable="true" 
