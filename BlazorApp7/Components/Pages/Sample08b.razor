@@ -27,7 +27,7 @@ else
         </dl>
     </div>
     <div>
-        <QuickGrid Items="@Titles.AsQueryable()" TGridItem="Title">
+        <QuickGrid Items="@Titles">
             <PropertyColumn Title="書籍ID" Property="@(t => t.TitleId)" />
             <PropertyColumn Title="書籍名" Property="@(t => t.TitleName)" />
             <PropertyColumn Title="価格" Property="@(t => t.Price)" />
@@ -43,7 +43,7 @@ else
     public required string AuthorId { get; init; }
 
     private Author? AuthorToDisplay { get; set; }
-    private IEnumerable<Title> Titles { get; set; } = Enumerable.Empty<Title>();
+    private IQueryable<Title>? Titles { get; set; }
 
     private string Message { get; set; } = string.Empty;
 
