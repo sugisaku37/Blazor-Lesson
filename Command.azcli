@@ -1,3 +1,6 @@
+# 本のサンプルコードが配置されているリポジトリ
+https://github.com/nakamacchi/Sample_BlazorBook
+
 # プロジェクトの作成
 dotnet new blazor -o BlazorApp1 -n BlazorApp1 -ai true
 dotnet new blazor -o BlazorApp2 -n BlazorApp2 -ai true
