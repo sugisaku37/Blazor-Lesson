@@ -1,0 +1,62 @@
+@page "/Sample10"
+@using BlazorApp7.Data
+@using Microsoft.EntityFrameworkCore
+@using Microsoft.AspNetCore.Components.QuickGrid
+@using System.ComponentModel.DataAnnotations
+
+@inject IDbContextFactory<PubsDbContext> DbFactory
+
+<h3>Sample10 : 入力データの検証</h3>
+
+<EditForm Model="@vm" OnValidSubmit="@OnEditSubmitted">
+
+    <fieldset disabled="@isProcessed">
+
+        <DataAnnotationsValidator />
+
+        <InputText @bind-Value="vm.Count" class="form-text" placeholder="表示する件数を入力してください" />
+        <button type="submit">表示</button>
+
+        <ValidationSummary />
+    </fieldset>
+</EditForm>
+
+<div>
+    @if (authors.Count() > 0)
+    {
+        <AuthorsGrid Authors="@authors" />
+    }
+    else
+    {
+        <span>データがありません。</span>
+    }
+</div>
+
+@code {
+    private IQueryable<Author> authors = new List<Author>().AsQueryable();
+    private ViewModel vm { get; } = new();
+    private bool isProcessed = false;
+
+    private async Task OnEditSubmitted(){
+        if (isProcessed) return;
+
+        try {
+            isProcessed = true;
+
+            await using (var pubs = await DbFactory.CreateDbContextAsync())
+            {
+                authors = (await pubs.Authors.OrderBy(a => a.AuthorId).Take(int.Parse(vm.Count)).ToListAsync()).AsQueryable();
+            }
+        }
+        finally
+        {
+            isProcessed = false;
+        }
+    }
+    
+    public class ViewModel {
+        [Required(ErrorMessage = "件数を入力してください。")]
+        [RegularExpression(@"^[1-9]\d*$", ErrorMessage = "正の整数を入力してください。")]
+        public string Count { get; set; } = string.Empty;
+    }
+}
