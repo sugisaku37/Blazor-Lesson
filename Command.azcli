@@ -10,6 +10,9 @@ dotnet new blazor -o BlazorApp5 -n BlazorApp5 -ai true
 dotnet new blazor -o BlazorApp6 -n BlazorApp6 -ai true
 dotnet new console -o BlazorApp6.Console -n BlazorApp6.Console
 dotnet new blazor -o BlazorApp7 -n BlazorApp7 -ai true
+dotnet new blazorwasm -o BlazorApp9 -n BlazorApp9
+dotnet new webapi -o BlazorAppApi09 -n BlazorAppApi09
+
 
 # ソリューションファイルへの追加
 dotnet new sln
@@ -21,6 +24,8 @@ dotnet sln Blazor-Lesson.slnx add ./BlazorApp5/BlazorApp5.csproj
 dotnet sln Blazor-Lesson.slnx add ./BlazorApp6/BlazorApp6.csproj
 dotnet sln Blazor-Lesson.slnx add ./BlazorApp6.Console/BlazorApp6.Console.csproj
 dotnet sln Blazor-Lesson.slnx add ./BlazorApp7/BlazorApp7.csproj
+dotnet sln Blazor-Lesson.slnx add ./BlazorApp9/BlazorApp9.csproj
+dotnet sln Blazor-Lesson.slnx add ./BlazorAppApi09/BlazorAppApi09.csproj
 
 # プロジェクト参照の追加
 dotnet reference add ./BlazorApp4/BlazorApp4.csproj --project ./BlazorApp4.Tests/BlazorApp4.Tests.csproj
